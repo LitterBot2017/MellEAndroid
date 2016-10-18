@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_above = "@id/instruction_text"
+        android:layout_above = "@+id/instruction_text"
         tools:context="edu.cmu.melle.MapsActivity" />
 
     <TextView
@@ -22,7 +22,9 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:text="Please swipe finger across boundary region"
-        android:textSize="30dp"
+        android:textSize="26dp"
+        android:background="#38005F"
+        android:textColor="#FFFFFF"
         android:fontFamily="Arial"/>
 
  </RelativeLayout>
