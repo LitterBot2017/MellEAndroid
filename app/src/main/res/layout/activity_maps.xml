@@ -11,20 +11,144 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_above = "@+id/instruction_text"
-        tools:context="edu.cmu.melle.MapsActivity" />
+        android:layout_above = "@+id/instruction_container"
+        tools:context="edu.cmu.melle.views.MapsActivity" />
 
-    <TextView
-        android:id="@+id/instruction_text"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/instruction_container"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:text="Please swipe finger across boundary region"
-        android:textSize="26dp"
-        android:background="#38005F"
-        android:textColor="#FFFFFF"
-        android:fontFamily="Arial"/>
+        android:background="#38005F">
+
+
+        <TextView
+            android:id="@+id/retrieving_location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Retrieving your MellE's location..."
+            android:textSize="26dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="Arial"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/top_left_instruction_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Please tap the top left of MellE's boundary area."
+            android:textSize="26dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="Arial"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/bottom_right_instruction_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Please tap the bottom right of MellE's boundary area."
+            android:textSize="26dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="Arial"
+            android:visibility="gone"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/boundary_confirm_container"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1.0"
+            android:padding="20dp">
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/boundary_cancel_button"
+                android:layout_marginRight="78dp"
+                android:layout_marginEnd="78dp"
+                android:layout_alignParentLeft="true"
+                android:textColor="#FFFFFF"
+                android:layout_weight="0.5"
+                android:background="#640000"/>
+
+            <Button
+                android:text="Start MellE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_melle_button"
+                android:layout_marginLeft="52dp"
+                android:layout_marginStart="52dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#FFFFFF"
+                android:layout_weight="0.5"
+                android:background="#006400"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sending_boundary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Setting MellE's boundary.  Please wait..."
+            android:textSize="26dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="Arial"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/starting_melle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="MellE is starting up..."
+            android:textSize="26dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="Arial"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/melle_running_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="MellE is running!"
+            android:textSize="26dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="Arial"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:indeterminateDrawable="@drawable/progress" >
+    </ProgressBar>
 
  </RelativeLayout>
