@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "edu.cmu.melle"
-        minSdkVersion 10
-        targetSdkVersion 24
+        minSdkVersion 15
+        targetSdkVersion 25
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
