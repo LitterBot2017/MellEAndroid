@@ -69,12 +69,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView mDrawTopLeftInstruction;
     private TextView mDrawBottomRightInstruction;
     private LinearLayout mBoundaryConfirmContainer;
+    private LinearLayout mStopMelleContainer;
     private TextView mSendingBoundaryText;
     private TextView mStartingMelleText;
-    private TextView mMelleRunningText;
+    private TextView mStoppingMelleText;
 
     private Button mBoundaryCancelButton;
     private Button mStartMelleButton;
+    private Button mStopMelleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +96,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mDrawTopLeftInstruction = (TextView) findViewById(R.id.top_left_instruction_text);
         mDrawBottomRightInstruction = (TextView) findViewById(R.id.bottom_right_instruction_text);
         mBoundaryConfirmContainer = (LinearLayout) findViewById(R.id.boundary_confirm_container);
+        mStopMelleContainer = (LinearLayout) findViewById(R.id.stop_melle_container);
         mBoundaryCancelButton = (Button) findViewById(R.id.boundary_cancel_button);
         mStartMelleButton = (Button) findViewById(R.id.start_melle_button);
+        mStopMelleButton =(Button) findViewById(R.id.stop_melle_button);
         mSendingBoundaryText = (TextView) findViewById(R.id.sending_boundary_text);
         mStartingMelleText = (TextView) findViewById(R.id.starting_melle_text);
-        mMelleRunningText = (TextView) findViewById(R.id.melle_running_text);
+        mStoppingMelleText = (TextView) findViewById(R.id.stopping_melle_text);
 
         setMapState(MapState.RETRIEVING_LOCATION);
     }
@@ -193,7 +197,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 break;
             case MapState.BOUNDARY_CONFIRM:
                 mMap.setOnMapClickListener(null);
-                setStartCancelButtonListeners();
+                setStartCancelStopButtonListeners();
                 showInstruction(mBoundaryConfirmContainer);
                 break;
             case MapState.SEND_BOUNDARY:
@@ -205,12 +209,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 showInstruction(mStartingMelleText);
                 break;
             case MapState.MELLE_RUNNING:
-                showInstruction(mMelleRunningText);
+                new ProgressTask().execute();
+                showInstruction(mStopMelleContainer);
+                break;
+            case MapState.STOPPING_MELLE:
+                new ProgressTask().execute();
+                showInstruction(mStoppingMelleText);
                 break;
         }
     }
 
-    private void setStartCancelButtonListeners() {
+    private void setStartCancelStopButtonListeners() {
         mBoundaryCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,8 +232,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 sendBoundary();
             }
         });
+        mStopMelleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendStop();
+            }
+        });
     }
 
+
+    private void sendStop() {
+        setMapState(MapState.STOPPING_MELLE);
+    }
     private void sendBoundary() {
         setMapState(MapState.SEND_BOUNDARY);
     }
@@ -242,7 +261,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mBoundaryConfirmContainer.setVisibility(GONE);
         mSendingBoundaryText.setVisibility(GONE);
         mStartingMelleText.setVisibility(GONE);
-        mMelleRunningText.setVisibility(GONE);
+        mStopMelleContainer.setVisibility(GONE);
+        mStoppingMelleText.setVisibility(GONE);
 
         visibleTextView.setVisibility(VISIBLE);
     }
@@ -269,6 +289,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new SendBoundary(mHandler, mBoundaryTopLeft, mBoundaryBottomRight).execute();
             } else if (mMapState == MapState.STARTING_MELLE) {
                 new SendRunning(mHandler, true).execute();
+            } else if (mMapState == MapState.STOPPING_MELLE) {
+                new SendRunning(mHandler,false).execute();
             }
         }
 
@@ -289,6 +311,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 setMapState(MapState.STARTING_MELLE);
             } else if (mMapState == MapState.STARTING_MELLE) {
                 setMapState(MapState.MELLE_RUNNING);
+            } else if (mMapState == MapState.STOPPING_MELLE) {
+                setMapState(MapState.BOUNDARY_CONFIRM);
             }
         }
     }

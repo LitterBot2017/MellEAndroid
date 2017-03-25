@@ -16,8 +16,8 @@ import java.net.URL;
 
 import edu.cmu.melle.models.Location;
 
-import static com.google.android.gms.internal.zznu.ib;
-import static edu.cmu.melle.services.GetLocation.getJSONObjectFromURL;
+//import static com.google.android.gms.internal.zznu.ib;
+//import static edu.cmu.melle.services.GetLocation.getJSONObjectFromURL;
 
 /**
  * Created by root on 10/20/16.

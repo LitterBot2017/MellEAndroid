@@ -39,8 +39,8 @@ public class GetLocation extends AsyncTask<Void, Void, Location> {
         JSONObject jsonLocation = null;
         Location location;
         try {
-            jsonLocation = getJSONObjectFromURL("https://obscure-spire-79030.herokuapp.com/api/location?robotID=1");
-            location = new Location(jsonLocation.getDouble("latitude"), jsonLocation.getDouble("longitude"));
+            jsonLocation = getJSONObjectFromURL("https://obscure-spire-79030.herokuapp.com/api/heartbeat?robotID=1");
+            location = new Location(jsonLocation.getDouble("currentLatitude"), jsonLocation.getDouble("currentLongitude"));
             mCallersHandler.sendMessage(Message.obtain( mCallersHandler, MSG_FINISHED, location));
             return location;
         } catch (IOException | JSONException e) {

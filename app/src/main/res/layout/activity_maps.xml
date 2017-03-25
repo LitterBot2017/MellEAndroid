@@ -99,6 +99,45 @@
 
         </LinearLayout>
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/stop_melle_container"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1.0"
+            android:padding="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="Running!"
+                android:textSize="26dp"
+                android:textColor="#FFFFFF"
+                android:layout_weight="0.5"
+                android:fontFamily="Arial"/>
+
+            <Button
+                android:text="Stop MellE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/stop_melle_button"
+                android:layout_marginLeft="52dp"
+                android:layout_marginStart="52dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#FFFFFF"
+                android:layout_weight="0.5"
+                android:background="#006400"/>
+
+        </LinearLayout>
+
+
+
         <TextView
             android:id="@+id/sending_boundary_text"
             android:layout_width="wrap_content"
@@ -126,13 +165,13 @@
             android:visibility="gone"/>
 
         <TextView
-            android:id="@+id/melle_running_text"
+            android:id="@+id/stopping_melle_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="MellE is running!"
+            android:text="MellE is stopping up..."
             android:textSize="26dp"
             android:textColor="#FFFFFF"
             android:fontFamily="Arial"

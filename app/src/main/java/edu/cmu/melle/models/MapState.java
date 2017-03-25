@@ -13,5 +13,6 @@ public class MapState {
     public static final int SEND_BOUNDARY = 50;
     public static final int STARTING_MELLE = 60;
     public static final int MELLE_RUNNING = 70;
+    public static final int STOPPING_MELLE = 80;
 
 }
